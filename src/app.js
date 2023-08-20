@@ -1,7 +1,7 @@
 import express from "express"
 import { __dirname } from "./utils.js"
 import productosRouter from "./routers/productos.Router.js"
-import viewRouter from "./routers/view.Router.js"
+import viewRouter from "./routers/view.router.js"
 import cartsRouter from "./routers/carts.Router.js"
 import handlebars from "express-handlebars"
 import { Server } from "socket.io"

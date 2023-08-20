@@ -13,8 +13,8 @@ const ManagerProducto = new managerProducto()
 
 router.get("/home", async (req, res) => {
     const productos = await ManagerProducto.getProduct()
-    res.render("home",{ productos })
-    // res.json({ productos })
+    // res.render("home",{ productos })
+    res.json({ productos })
 })
 
 router.get("/realTimeProductos", (req, res) => {
