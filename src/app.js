@@ -36,11 +36,13 @@ const httpServer = app.listen(PORT, () => {
 
 const socketServer = new Server(httpServer)
 
-import { managerProducto } from "./dao/manager/managerProducto.js";
+import { managerProducto } from "./dao/manager/managerProducto.js"; 
+
 import { isNumberObject, isStringObject } from "util/types"
 import { resolveObjectURL } from "buffer"
 
 const ManagerProductoSocket = new managerProducto(__dirname + "/dao/db/productos.json")
+
 
 socketServer.on("connection", async (Socket) => {
     console.log(`cliente conectado a servidor:${Socket.id}`)

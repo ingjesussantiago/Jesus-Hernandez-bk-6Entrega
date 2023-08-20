@@ -1,11 +1,15 @@
 import { Router } from "express"
-import { managerProducto } from "../dao/manager/managerProducto.js"
+//import { managerProducto } from "../dao/manager/managerProducto.js
+import  managerProducto from "../dao/mongoosedb/models/managerProductoMoogose.js"
+
 import { uploader } from "../utils.js"
 import { __dirname } from "../utils.js"
 
 const router = Router()
 
-const ManagerProducto = new managerProducto(__dirname + "/dao/db/productos.json")
+//const ManagerProducto = new managerProducto(__dirname + "/dao/db/productos.json")
+const ManagerProducto = new managerProducto()
+
 router.get("/", async (req, res) => {
     const productos = await ManagerProducto.getProduct()
     res.render("home", { productos })

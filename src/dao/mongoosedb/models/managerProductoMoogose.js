@@ -1,0 +1,27 @@
+import  {productoModel} from "../models/producto.model.js"
+
+
+export default class managerProducto {
+
+    getProduct = async () => {
+        try {
+            const productos = await productoModel.find()
+            // const productos = JSON.parse(buscarProduct)
+            return productos
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    addProduct =async(producto)=>{
+        try {
+            const nuevoProducto=await productoModel.create(producto)
+            return nuevoProducto
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+
