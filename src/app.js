@@ -5,7 +5,8 @@ import viewRouter from "./routers/view.Router.js"
 import cartsRouter from "./routers/carts.Router.js"
 import handlebars from "express-handlebars"
 import { Server } from "socket.io"
-import fs from 'fs/promises';
+import fs from 'fs/promises'
+import "./dao/mongoosedb/dbConfig.js"
 
 
 const app = express()

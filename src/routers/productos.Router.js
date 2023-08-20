@@ -11,9 +11,19 @@ const router = Router()
 const ManagerProducto = new managerProducto()
 
 router.get("/", async (req, res) => {
-    const productos = await ManagerProducto.getProduct()
+try {
+     const productos = await ManagerProducto.getProduct()
     res.render("home", { productos })
     // res.json({ productos })
+} catch (error) {
+    console.log(error);
+}
+
+
+
+
+
+   
 })
 
 router.post("/", uploader.single('file'), async (req, res) => {

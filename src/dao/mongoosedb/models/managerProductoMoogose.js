@@ -5,8 +5,8 @@ export default class managerProducto {
 
     getProduct = async () => {
         try {
-            const productos = await productoModel.find()
-            // const productos = JSON.parse(buscarProduct)
+            const buscarproducts = await productoModel.find()
+            const productos = JSON.parse(buscarproducts)
             return productos
         } catch (error) {
             console.log(error);
