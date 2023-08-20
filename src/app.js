@@ -1,11 +1,12 @@
 import express from "express"
 import { __dirname } from "./utils.js"
 import productosRouter from "./routers/productos.Router.js"
-import viewRouter from "./routers/view.Router.js"
+import viewRouter from "./routers/view.router.js"
 import cartsRouter from "./routers/carts.Router.js"
 import handlebars from "express-handlebars"
 import { Server } from "socket.io"
-import fs from 'fs/promises';
+import fs from 'fs/promises'
+import "./dao/mongoosedb/dbConfig.js"
 
 
 const app = express()
@@ -36,11 +37,13 @@ const httpServer = app.listen(PORT, () => {
 
 const socketServer = new Server(httpServer)
 
-import { managerProducto } from "./dao/manager/managerProducto.js";
+import { managerProducto } from "./dao/manager/managerProducto.js"; 
+
 import { isNumberObject, isStringObject } from "util/types"
 import { resolveObjectURL } from "buffer"
 
 const ManagerProductoSocket = new managerProducto(__dirname + "/dao/db/productos.json")
+
 
 socketServer.on("connection", async (Socket) => {
     console.log(`cliente conectado a servidor:${Socket.id}`)
