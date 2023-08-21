@@ -1,10 +1,12 @@
 import { Router } from "express"
-import {ManagerCart } from "../dao/manager/managerCart.js"
+// import {ManagerCart } from "../dao/manager/managerCart.js"
+import ManagerCart from "../dao/mongoosedb/managerMongose/managerCartMongoose.js"
 import { __dirname } from "../utils.js"
 
 const router = Router()
 
-const managerCart = new ManagerCart(__dirname + "/dao/db/Carts.json")
+//const managerCart = new ManagerCart(__dirname + "/dao/db/Carts.json")
+const managerCart = new ManagerCart()
 
 router
 
