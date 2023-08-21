@@ -8,30 +8,30 @@ const router = Router()
 //const managerCart = new ManagerCart(__dirname + "/dao/db/Carts.json")
 const managerCart = new ManagerCart()
 
-router
 
-router.post("/", async(req, res)=>{
-    const newCart =await managerCart.crearCarrito()
-    res.json({cart:newCart})
+router.post("/", async (req, res) => {
+    try {
+        const newCart = await managerCart.crearCarrito()
+        res.json({ cart: newCart })
+
+    } catch (error) {
+        console.log(error);
+    }
+
 })
 
 
 router.get("/:idCart", async (req, res) => {
-    const { idCart } = req.params
-    const cart = await managerCart.getCart(+idCart)
-    res.json({ cart })
+    try {
+        const { idCart } = req.params
+        const cart = await managerCart.getCart(idCart)
+        res.json({ cart })
+
+    } catch (error) {
+        console.log(error);
+    }
+
 })
-
-router.post("/:idCart/producto/:idProducto",async (req,res)=>{
-    const {idCart, idProducto}=req.params
-    const addproducto=await managerCart.addProductoToCars(+idCart,+idProducto)
-    res.json({message:addproducto})
-})
-
-
-
-
-
 
 
 export default router
