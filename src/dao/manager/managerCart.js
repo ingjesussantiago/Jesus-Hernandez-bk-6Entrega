@@ -14,6 +14,7 @@ export class ManagerCart {
         } else {
             console.log("no hay carritos")
             return []
+            
 
         }
     }
