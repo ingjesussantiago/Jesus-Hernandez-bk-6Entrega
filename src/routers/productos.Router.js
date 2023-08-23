@@ -26,22 +26,17 @@ try {
    
 })
 
-router.post("/", uploader.single('file'), async (req, res) => {
+router.post("/",async (req, res) => {
     //  uploader.single("file")
-    if (!req.file) {
-        return res.status(400).send({ status: "error", mensaje: "no se adjunto archivo" })
-    }
-    console.log(req.file)
-
-    const producto = req.body
-    const productopaht = req.file.filename
-
-    producto.thumbnails =  `/img/${productopaht}`
-    
-
-    const nuevoProducto = await ManagerProducto.addProduct(producto)
-    // res.json({ message: "Producto creado", producto: nuevoProducto })
-    res.redirect("/realTimeProductos")
+    //const producto = req.body
+   try {
+     const nuevoProducto = await ManagerProducto.addProduct(req.body)
+    res.json({ message: "Producto creado", producto: nuevoProducto })
+    // res.redirect("/realTimeProductos")
+   } catch (error) {
+    console.log(error);
+   }
+   
 })
 
 router.get("/:idProducto", async (req, res) => {
@@ -56,9 +51,14 @@ router.delete("/", async (req, res) => {
 })
 
 router.delete("/:idProducto", async (req, res) => {
+    try {
     const { idProducto } = req.params
-    const message = await ManagerProducto.delateProductById(+idProducto)
+    const message = await ManagerProducto.delateProductById(idProducto)
     res.json({ message })
+    } catch (error) {
+        console.log(error);
+    }
+  
 })
 
 router.put("/:idProducto", async (req, res) => {
@@ -69,6 +69,24 @@ router.put("/:idProducto", async (req, res) => {
 })
 
 
+//pos para imagen
+// router.post("/", uploader.single('file'), async (req, res) => {
+//     //  uploader.single("file")
+//     if (!req.file) {
+//         return res.status(400).send({ status: "error", mensaje: "no se adjunto archivo" })
+//     }
+//     console.log(req.file)
+
+//     const producto = req.body
+//     const productopaht = req.file.filename
+
+//     producto.thumbnails =  `/img/${productopaht}`
+    
+
+//     const nuevoProducto = await ManagerProducto.addProduct(producto)
+//     // res.json({ message: "Producto creado", producto: nuevoProducto })
+//     res.redirect("/realTimeProductos")
+// })
 
 
 export default router

@@ -18,6 +18,12 @@ const productoSchema = new mongoose.Schema({
     },
     category:{
         type:String
+<<<<<<< HEAD
+=======
+    },
+    stock:{
+        type:String
+>>>>>>> moogose1
     }
 
 });
