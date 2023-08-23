@@ -1,6 +1,6 @@
 import { Router } from "express"
 //import { managerProducto } from "../dao/manager/managerProducto.js
-import  managerProducto from "../dao/mongoosedb/models/managerProductoMoogose.js"
+import managerProducto from "../dao/mongoosedb/models/managerProductoMoogose.js"
 
 import { uploader } from "../utils.js"
 import { __dirname } from "../utils.js"
@@ -11,39 +11,40 @@ const router = Router()
 const ManagerProducto = new managerProducto()
 
 router.get("/", async (req, res) => {
-try {
-     const productos = await ManagerProducto.getProduct()
-    // res.render("home", { productos })
-    res.json({ productos })
-} catch (error) {
-    console.log(error);
-}
+    try {
+        const productos = await ManagerProducto.getProduct()
+        // res.render("home", { productos })
+        res.json({ productos })
+    } catch (error) {
+        console.log(error);
+    }
 
-
-
-
-
-   
-})
-
-router.post("/",async (req, res) => {
-    //  uploader.single("file")
-    //const producto = req.body
-   try {
-     const nuevoProducto = await ManagerProducto.addProduct(req.body)
-    res.json({ message: "Producto creado", producto: nuevoProducto })
-    // res.redirect("/realTimeProductos")
-   } catch (error) {
-    console.log(error);
-   }
-   
 })
 
 router.get("/:idProducto", async (req, res) => {
-    const { idProducto } = req.params
-    const producto = await ManagerProducto.getProductoById(idProducto)
-    res.json({ producto })
+    try {
+        const { idProducto } = req.params
+        const producto = await ManagerProducto.getProductoById(idProducto)
+        res.json({ producto })
+    } catch (error) {
+        console.log(error);
+    }
+
 })
+
+router.post("/", async (req, res) => {
+    //  uploader.single("file")
+    //const producto = req.body
+    try {
+        const nuevoProducto = await ManagerProducto.addProduct(req.body)
+        res.json({ message: "Producto creado", producto: nuevoProducto })
+        // res.redirect("/realTimeProductos")
+    } catch (error) {
+        console.log(error);
+    }
+
+})
+
 
 router.delete("/", async (req, res) => {
     const message = await ManagerProducto.delateProduct()
@@ -52,20 +53,26 @@ router.delete("/", async (req, res) => {
 
 router.delete("/:idProducto", async (req, res) => {
     try {
-    const { idProducto } = req.params
-    const message = await ManagerProducto.delateProductById(idProducto)
-    res.json({ message })
+        const { idProducto } = req.params
+        const message = await ManagerProducto.delateProductById(idProducto)
+        res.json({ message })
     } catch (error) {
         console.log(error);
     }
-  
+
 })
 
 router.put("/:idProducto", async (req, res) => {
-    const { idProducto } = req.params
+    try {
+        const { idProducto } = req.params
     const productoup = req.body
-    const producto = await ManagerProducto.upDateProduc(+idProducto, productoup)
+    const updateOptions={new:true}
+    const producto = await ManagerProducto.upDateProduc(idProducto, productoup,updateOptions)
     res.json({ producto })
+    } catch (error) {
+        console.log(error);
+    }
+    
 })
 
 
@@ -81,7 +88,7 @@ router.put("/:idProducto", async (req, res) => {
 //     const productopaht = req.file.filename
 
 //     producto.thumbnails =  `/img/${productopaht}`
-    
+
 
 //     const nuevoProducto = await ManagerProducto.addProduct(producto)
 //     // res.json({ message: "Producto creado", producto: nuevoProducto })
