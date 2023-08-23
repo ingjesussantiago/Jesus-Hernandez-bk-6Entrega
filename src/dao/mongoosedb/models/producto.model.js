@@ -18,6 +18,9 @@ const productoSchema = new mongoose.Schema({
     },
     category:{
         type:String
+    },
+    stock:{
+        type:String
     }
 
 });

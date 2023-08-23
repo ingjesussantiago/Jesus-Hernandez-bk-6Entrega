@@ -22,6 +22,19 @@ export default class managerProducto {
             console.log(error);
         }
     }
+
+    delateProductById = async (idProducto) => {
+        try {
+          const idProductoBorrado= await productoModel.findByIdAndDelete(idProducto)
+          return idProductoBorrado
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+
+
 }
 
 
