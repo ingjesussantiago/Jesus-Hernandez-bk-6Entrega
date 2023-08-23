@@ -13,6 +13,17 @@ export default class managerProducto {
         }
     }
 
+    getProductoById= async (idProducto) => {
+        try {
+            const productoById = await productoModel.findById(idProducto)
+            // const productos = JSON.parse(buscarproducts)
+            return productoById
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     addProduct =async(producto)=>{
         try {
             const nuevoProducto=await productoModel.create(producto)

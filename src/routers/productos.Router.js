@@ -41,7 +41,7 @@ router.post("/",async (req, res) => {
 
 router.get("/:idProducto", async (req, res) => {
     const { idProducto } = req.params
-    const producto = await ManagerProducto.getProductoById(+idProducto)
+    const producto = await ManagerProducto.getProductoById(idProducto)
     res.json({ producto })
 })
 
