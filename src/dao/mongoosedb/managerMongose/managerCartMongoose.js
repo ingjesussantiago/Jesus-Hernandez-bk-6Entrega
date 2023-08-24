@@ -39,7 +39,30 @@ export default class ManagerCart {
             return err;
 
         }
+    };
+
+    delatecarrito= async(cartId)=>{
+        try {
+            const delatecart=await cartModel.findByIdAndDelete(cartId);
+            return delatecart;
+        } catch (error) {
+            console.log(error);
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     addProductoToCars = async (idCart, idProducto) => {
         try {

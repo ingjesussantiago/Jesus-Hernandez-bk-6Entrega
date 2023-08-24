@@ -8,9 +8,14 @@ const router = Router()
 //const managerCart = new ManagerCart(__dirname + "/dao/db/Carts.json")
 const managerCart = new ManagerCart()
 
-
-
-
+router.get("/",async(req,res)=>{
+    try {
+        const carts= await managerCart.getCarts()
+        res.json({carts})
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 
 
@@ -38,7 +43,14 @@ router.post("/", async (req, res) => {
     
 })
 
-
-
+router.delete("/:idCart",async(req,res)=>{
+  try {
+    const { idCart } = req.params
+    const delatecart=await managerCart.delatecarrito(idCart)
+    res.json({delatecart})
+} catch (error) {
+    
+}  
+})
 
 export default router
