@@ -9,17 +9,9 @@ const router = Router()
 const managerCart = new ManagerCart()
 
 
-router.post("/", async (req, res) => {
-    try {
-        const newCart = await managerCart.crearCarrito()
-        res.json({ cart: newCart })
 
-    } catch (error) {
-        console.log(error);
-    }
 
-    
-})
+
 
 
 router.get("/:idCart", async (req, res) => {
@@ -33,6 +25,20 @@ router.get("/:idCart", async (req, res) => {
     }
 
 })
+
+router.post("/", async (req, res) => {
+    try {
+        const newCart = await managerCart.crearCarrito()
+        res.json({ cart: newCart })
+
+    } catch (error) {
+        console.log(error);
+    }
+
+    
+})
+
+
 
 
 export default router

@@ -5,9 +5,8 @@ export default class managerProducto {
 
     getProduct = async () => {
         try {
-            const productos = await productoModel.find()
-            // const productos = JSON.parse(buscarproducts)
-            return productos
+            const productos = await productoModel.find().lean()
+           return productos
         } catch (error) {
             console.log(error);
         }
@@ -54,8 +53,9 @@ export default class managerProducto {
 
     }
 
-    upDateProduc = async (idProducto,productoup,updateOptions) => {
+    upDateProduc = async (idProducto,productoup) => {
         try {
+            const updateOptions={new:true}
             const modificaProdcto = await productoModel.findByIdAndUpdate(idProducto,productoup,updateOptions)
             return modificaProdcto
         } catch (error) {

@@ -13,8 +13,8 @@ const ManagerProducto = new managerProducto()
 router.get("/", async (req, res) => {
     try {
         const productos = await ManagerProducto.getProduct()
-        // res.render("home", { productos })
-        res.json({ productos })
+        //res.render("home", { productos })
+       res.json({ productos })
     } catch (error) {
         console.log(error);
     }
@@ -66,8 +66,8 @@ router.put("/:idProducto", async (req, res) => {
     try {
         const { idProducto } = req.params
     const productoup = req.body
-    const updateOptions={new:true}
-    const producto = await ManagerProducto.upDateProduc(idProducto, productoup,updateOptions)
+    // const updateOptions={new:true}
+    const producto = await ManagerProducto.upDateProduc(idProducto, productoup)
     res.json({ producto })
     } catch (error) {
         console.log(error);
