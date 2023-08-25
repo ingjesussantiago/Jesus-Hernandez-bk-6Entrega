@@ -51,9 +51,13 @@ export default class ManagerCart {
     }
 
 
-
-
-
+addProductoCart= async(idCart,idProducto)=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+}
 
 
 
